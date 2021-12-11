@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Company.Mobile.Views.EmployeeListView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:Company.Mobile.ViewModels"
+    Title="Employee List">
+
+    <ContentPage.BindingContext>
+        <vm:EmployeeListViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid
+            Margin="5"
+            ColumnSpacing="5"
+            RowDefinitions="Auto,*">
+
+            <Button
+                BackgroundColor="Green"
+                Command="{Binding AddNewCommand}"
+                CornerRadius="15"
+                HorizontalOptions="Center"
+                Text="Add New"
+                TextColor="White"
+                WidthRequest="200" />
+
+            <ActivityIndicator
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                IsRunning="{Binding IsBusy}"
+                VerticalOptions="Center" />
+
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding ItemCollection}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectionChangedCommand="{Binding GoToDetailCommand}"
+                SelectionMode="Single">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid
+                            Margin="5"
+                            ColumnDefinitions="2*,*"
+                            ColumnSpacing="5"
+                            RowSpacing="5">
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="Large"
+                                Text="{Binding Name}"
+                                TextColor="Blue" />
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding Salary, StringFormat='{0:C2}'}"
+                                TextColor="Green" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

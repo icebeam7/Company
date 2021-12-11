@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Company.Mobile.Views.EmployeeDetailView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Employee Detail">
+
+    <ContentPage.Content>
+        <StackLayout Margin="5" Spacing="5">
+            <Label
+                FontSize="Medium"
+                Text="Name"
+                TextColor="Blue" />
+
+            <Entry Text="{Binding CurrentItem.Name}" />
+
+            <Label
+                FontSize="Medium"
+                Text="Salary"
+                TextColor="Blue" />
+
+            <Entry Keyboard="Numeric" Text="{Binding CurrentItem.Salary}" />
+
+            <Label
+                FontSize="Medium"
+                Text="Join Date"
+                TextColor="Blue" />
+
+            <DatePicker Date="{Binding CurrentItem.JoinDate}" />
+
+            <Label
+                FontSize="Medium"
+                Text="Department"
+                TextColor="Blue" />
+
+            <Picker
+                Title="Department"
+                ItemDisplayBinding="{Binding Name}"
+                ItemsSource="{Binding Departments}"
+                SelectedItem="{Binding SelectedDepartment}" />
+
+            <Button
+                BackgroundColor="Green"
+                Command="{Binding SaveCommand}"
+                CornerRadius="15"
+                HorizontalOptions="Center"
+                Text="Save"
+                TextColor="White"
+                WidthRequest="200" />
+
+            <Button
+                BackgroundColor="Green"
+                Command="{Binding DeleteCommand}"
+                CornerRadius="15"
+                HorizontalOptions="Center"
+                Text="Delete"
+                TextColor="White"
+                WidthRequest="200" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
